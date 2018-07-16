@@ -1,0 +1,8 @@
+{
+  "name": "app-personal-management",
+  "app_id": "ada72241",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
