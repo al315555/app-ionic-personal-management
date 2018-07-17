@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {TareasPage} from "../tareas/tareas";
+import {LanguageService} from "../../app/language.service";
 
 @Component({
   selector: 'page-home',
@@ -8,7 +9,7 @@ import {TareasPage} from "../tareas/tareas";
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public resources: LanguageService) {
 
   }
 

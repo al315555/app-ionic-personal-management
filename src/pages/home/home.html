@@ -1,6 +1,18 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Home</ion-title>
+    <ion-avatar>
+      <button ion-button item-end end color="dark" (click)="resources.changeTo_ES()"
+              *ngIf="resources.language === 'EN'">
+        <i class="spain flag"></i>
+        {{resources.properties.labelChangeLanguaje}}
+      </button>
+      <button ion-button item-end color="dark" (click)="resources.changeTo_EN()"
+              *ngIf="resources.language === 'ES'">
+        <i class="gb flag"></i>
+        {{resources.properties.labelChangeLanguaje}}
+      </button>
+    </ion-avatar>
   </ion-navbar>
 </ion-header>
 
@@ -15,5 +27,5 @@
     update any existing page or create new pages.
   </p>
 
-  <button ion-button block (click)="launchTareasPage()">Redirigir a tareas</button>
+  <button ion-button block (click)="launchTareasPage()">{{resources.properties.labelRedirectionTest}}</button>
 </ion-content>
