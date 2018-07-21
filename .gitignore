@@ -12,6 +12,9 @@ log.txt
 .vscode/
 npm-debug.log*
 
+set/app/environments/environment.prod.ts
+set/app/environments/environment.ts
+
 .idea/
 .sourcemaps/
 .sass-cache/

@@ -6,6 +6,7 @@ import { HomePage } from '../home/home';
 import {LanguageService} from "../../app/language.service";
 import {TareasPage} from "../tareas/tareas";
 import {PurchaseListPage} from "../purchase-list/purchase-list";
+import {NavigationService} from "../../app/nav.service";
 
 @Component({
   templateUrl: 'tabs.html'
@@ -17,7 +18,12 @@ export class TabsPage {
   tab3Root = RemindersPage;
   tab4Root = CountPage;
   tab5Root = PurchaseListPage;
-  constructor( public resources: LanguageService) {
 
+  constructor( public resources: LanguageService, public nav: NavigationService) {
+
+  }
+
+  logout(){
+    this.nav.doLogout()
   }
 }

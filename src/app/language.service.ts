@@ -6,16 +6,24 @@ export class LanguageService {
 
   language: string;
 
+  public languages: any[];
+
   constructor() {
+    this.languages = [
+      {
+        value: 'ES',
+        label: 'Español'
+      },
+      {
+        value: 'EN',
+        label: 'Inglés'
+      }
+      ]
     this.language = 'ES';
   }
 
-  public changeTo_EN() {
-    this.language = 'EN';
-  }
-
-  public changeTo_ES() {
-    this.language = 'ES';
+  public changeLanguaje(lSelected:string) {
+    this.language = lSelected;
   }
 
   get properties() {

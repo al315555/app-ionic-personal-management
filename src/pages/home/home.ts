@@ -16,4 +16,8 @@ export class HomePage {
   launchTareasPage(){
     this.navCtrl.push(TareasPage);
   }
+
+  choose(event){
+    this.resources.changeLanguaje(event);
+  }
 }

@@ -6,7 +6,10 @@ export const properties = {
       , labelItemMenuContable:'Contabilidad'
       , labelItemMenuListCart:'Lista'
       , labelRedirectionTest:'Redirigir a tareas'
-      , labelChangeLanguaje:'English'
+      , labelChangeLanguaje:'Idioma'
+      , loginLabel:'Autenticación'
+      , labelLogOut:'Cerrar'
+      , labelWelcome: 'Bienvenido'
       },
     en : {
       labelItemMenuHome:'Home'
@@ -15,6 +18,9 @@ export const properties = {
       , labelItemMenuContable:'Accounting'
       , labelItemMenuListCart:'List'
       , labelRedirectionTest:'Redirect to tasks'
-      , labelChangeLanguaje:'Español'
+      , labelChangeLanguaje:'Language'
+      , loginLabel:'Log in'
+      , labelLogOut:'Log out'
+      , labelWelcome: 'Welcome'
     }
 };

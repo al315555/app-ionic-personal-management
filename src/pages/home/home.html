@@ -1,31 +1,22 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Home</ion-title>
-    <ion-avatar>
-      <button ion-button item-end end color="dark" (click)="resources.changeTo_ES()"
-              *ngIf="resources.language === 'EN'">
-        <i class="spain flag"></i>
-        {{resources.properties.labelChangeLanguaje}}
-      </button>
-      <button ion-button item-end color="dark" (click)="resources.changeTo_EN()"
-              *ngIf="resources.language === 'ES'">
-        <i class="gb flag"></i>
-        {{resources.properties.labelChangeLanguaje}}
-      </button>
-    </ion-avatar>
   </ion-navbar>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{resources.properties.labelChangeLanguaje}}</ion-label>
+      <ion-select (ionChange)="choose($event)">
+        <ion-option *ngFor="let item of resources.languages" [value]="item.value">
+          {{ item.label }}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
-
+  <h2>{{resources.properties.labelWelcome}}</h2>
+  <br/>
   <button ion-button block (click)="launchTareasPage()">{{resources.properties.labelRedirectionTest}}</button>
+  <br/>
 </ion-content>
