@@ -4,7 +4,10 @@ import {properties} from '../environments/properties';
 @Injectable()
 export class LanguageService {
 
-  language: string;
+  private ES: string = 'ES';
+  private EN: string = 'EN';
+
+  public language: string;
 
   public languages: any[];
 
@@ -16,7 +19,7 @@ export class LanguageService {
       },
       {
         value: 'EN',
-        label: 'Inglés'
+        label: 'English'
       }
       ]
     this.language = 'ES';
@@ -28,10 +31,18 @@ export class LanguageService {
 
   get properties() {
     switch (this.language) {
-      case 'ES':
+      case this.ES:
         return properties.es;
-      case 'EN':
+      case this.EN:
         return properties.en;
     }
+  }
+
+  get ES_LANGUAJE(){
+    return this.ES;
+  }
+
+  get EN_LANGUAJE(){
+    return this.EN;
   }
 }

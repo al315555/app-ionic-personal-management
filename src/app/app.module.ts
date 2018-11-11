@@ -18,6 +18,8 @@ import {AngularFireModule} from "angularfire2";
 import {environment} from "../environments/environment";
 import {NavigationService} from "./nav.service";
 import {LoginPage} from "../pages/login/login";
+import {AuthService} from "./auth.service";
+import {AngularFireDatabase} from "angularfire2/database";
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import {LoginPage} from "../pages/login/login";
     SplashScreen,
     LanguageService,
     NavigationService,
+    AuthService,
+    AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

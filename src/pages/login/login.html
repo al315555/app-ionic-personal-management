@@ -13,10 +13,40 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <form [formGroup]="myForm" (ngSubmit)="doLogin()">
+    <ion-list>
 
-<button ion-button (click)="doLoginWithGoogleAccount()">
-  {{resources.properties.loginLabel}}
-</button>
+      <ion-item>
+        <ion-icon name="mail" item-start></ion-icon>
+        <ion-label stacked>Correo electronico:</ion-label>
+        <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="eye" item-start></ion-icon>
+        <ion-label stacked>Contraseña:</ion-label>
+        <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
+      </ion-item>
 
+    </ion-list>
+    <div padding>
+      <button ion-button block type="submit" [disabled]="!myForm.valid">Guardar</button>
+    </div>
+    <div padding>
+      <button ion-button block type="button" (click)="doSignup()" [disabled]="!myForm.valid">Registrarse</button>
+    </div>
+  </form>
 </ion-content>
+
+<!--ion-content padding>
+
+  <button ion-button (click)="doLogin()">
+    {{resources.properties.loginLabel}}
+  </button>
+  <button ion-button (click)="doSignup()">
+    REGISTRO
+    {{resources.properties.loginLabel}}
+  </button>
+
+</ion-content-->
+

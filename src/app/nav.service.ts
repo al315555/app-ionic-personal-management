@@ -1,24 +1,25 @@
 import {Injectable} from '@angular/core';
+import {AuthService} from "./auth.service";
 
 @Injectable()
 export class NavigationService {
 
-  isLogged:boolean = false;
-  /*LOGGED:number = 1;
-  NOT_LOGGED:number = 0;*/
+  constructor(private auth: AuthService) {
+    //this.isLogged = this.auth.logged;
+  }
 
-  constructor() {}
+  doLogin(email:string, password:string){
+    this.auth.login(email, password);
+  }
 
-  doLogin(){
-    //TODO
-    this.isLogged = true;
+  doSignup(email:string, password:string){
+    this.auth.signup(email, password);
   }
 
   doLogout(){
-    //TODO
-    this.isLogged = false;
+    this.auth.logout();
   }
 
-  get mainPage(){return this.isLogged ? 1 : 0;}
+  get mainPage(){return this.auth.isLoggedIn() ? 1 : 0;}
 
 }

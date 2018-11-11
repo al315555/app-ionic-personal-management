@@ -7,6 +7,7 @@ import {LanguageService} from "../../app/language.service";
 import {TareasPage} from "../tareas/tareas";
 import {PurchaseListPage} from "../purchase-list/purchase-list";
 import {NavigationService} from "../../app/nav.service";
+import {AuthService} from "../../app/auth.service";
 
 @Component({
   templateUrl: 'tabs.html'
@@ -19,8 +20,8 @@ export class TabsPage {
   tab4Root = CountPage;
   tab5Root = PurchaseListPage;
 
-  constructor( public resources: LanguageService, public nav: NavigationService) {
-
+  constructor( public resources: LanguageService, public nav: NavigationService, public auth: AuthService) {
+    this.resources.changeLanguaje(this.auth.userSpecificData.languaje);
   }
 
   logout(){

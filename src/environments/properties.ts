@@ -1,6 +1,6 @@
 export const properties = {
     es : {
-      labelItemMenuHome:'Inicio'
+      labelItemMenuHome:'Ajustes'
       , labelItemMenuTasks:'Tareas'
       , labelItemMenuRemembers:'Recordatorios'
       , labelItemMenuContable:'Contabilidad'
@@ -9,10 +9,13 @@ export const properties = {
       , labelChangeLanguaje:'Idioma'
       , loginLabel:'Autenticación'
       , labelLogOut:'Cerrar'
-      , labelWelcome: 'Bienvenido'
+      , labelEmail:'Correo electrónico'
+      , labelLanguajeEN:'Inglés'
+      , labelLanguajeES:'Español'
+      , labelName:'Nombre'
       },
     en : {
-      labelItemMenuHome:'Home'
+      labelItemMenuHome:'Settings'
       , labelItemMenuTasks:'Tasks'
       , labelItemMenuRemembers:'Reminders'
       , labelItemMenuContable:'Accounting'
@@ -21,6 +24,9 @@ export const properties = {
       , labelChangeLanguaje:'Language'
       , loginLabel:'Log in'
       , labelLogOut:'Log out'
-      , labelWelcome: 'Welcome'
+      , labelEmail:'Email'
+      , labelLanguajeEN:'English'
+      , labelLanguajeES:'Spanish'
+      , labelName:'Name'
     }
 };
