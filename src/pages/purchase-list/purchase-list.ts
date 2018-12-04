@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {LanguageService} from "../../app/language.service";
+import {PurchaseListElement} from "../../app/models/PurchaseListElement";
+import {AuthService} from "../../app/auth.service";
 
 /**
  * Generated class for the PurchaseListPage page.
@@ -16,31 +18,34 @@ import {LanguageService} from "../../app/language.service";
 })
 export class PurchaseListPage {
 
-  purchaseItems: {}[];
+  items: Array<PurchaseListElement>;
 
   constructor(public navCtrl: NavController
-              , public navParams: NavParams
-              , public resources1: LanguageService
-              , public alertCtrl: AlertController) {
-    this.purchaseItems = [];
+    , public navParams: NavParams
+    , public resources1: LanguageService
+    , public alertCtrl: AlertController
+    , private authService: AuthService) {
+    this.loadList();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PurchaseListPage');
   }
 
-  deployAddPrompt(){
+  deployAddPrompt() {
     const prompt = this.alertCtrl.create({
       title: 'Añadir producto',
       message: 'Introduzca el nombre del componente y una pequeña descripción.',
       inputs: [
         {
           name: 'Nom',
-          placeholder: 'Nombre'
+          placeholder: 'Nombre',
+          value: ''
         },
         {
           name: 'Descrip',
-          placeholder: 'Descripción'
+          placeholder: 'Descripción',
+          value: ''
         },
       ],
       buttons: [
@@ -53,10 +58,13 @@ export class PurchaseListPage {
         {
           text: 'Guardar',
           handler: data => {
-            this.purchaseItems.push(data);
-            console.log('Saved clicked ');
-            console.log(data);
-            console.log(data);
+            const name = data['Nom'];
+            const desc = data['Descrip'];
+            let purchaseListElement = new PurchaseListElement();
+            purchaseListElement.name = name;
+            purchaseListElement.description = desc;
+            purchaseListElement.dateModification = 0;
+            this.authService.purchaseListData.push(purchaseListElement);
           }
         }
       ]
@@ -64,8 +72,15 @@ export class PurchaseListPage {
     prompt.present();
   }
 
-  addItem(item: string){
-    this.purchaseItems.push(item);
+  private loadList(): void {
+    this.authService.loadPurchaseListData();
   }
 
+  saveList() {
+    this.authService.savePurchaseListData();
+  }
+
+  get purchaseItems(){
+    return this.authService.purchaseListData;
+  }
 }

@@ -14,6 +14,7 @@ export const properties = {
       , labelLanguajeES:'Español'
       , labelName:'Nombre'
       , labelPurchaseList:'Lista de la Compra'
+      , labelInBuilding:'En construcción'
       },
     en : {
       labelItemMenuHome:'Settings'
@@ -30,5 +31,6 @@ export const properties = {
       , labelLanguajeES:'Spanish'
       , labelName:'Name'
       , labelPurchaseList:'Shopping list'
+      , labelInBuilding:'In construction'
     }
 };

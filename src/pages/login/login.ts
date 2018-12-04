@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import {AlertController, IonicPage} from 'ionic-angular';
 import {LanguageService} from "../../app/language.service";
 import {NavigationService} from "../../app/nav.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -22,16 +22,18 @@ export class LoginPage {
 
   constructor(public resources: LanguageService,
               public navigation: NavigationService,
-              public formBuilder: FormBuilder) {
+              public formBuilder: FormBuilder,
+              public alertCtrl: AlertController) {
     this.myForm = this.createMyForm();
   }
 
   ionViewDidLoad() {
   }
 
-  doLogin(){
+  doLogin() {
     this.navigation.doLogin(this.emailForm, this.passwordForm);
   }
+
 
   doSignup(){
     this.navigation.doSignup(this.emailForm, this.passwordForm);
@@ -60,6 +62,8 @@ export class LoginPage {
       ]
       ]});
   }
+
+
 
   //doLoginWithGoogleAccount(){
     //this.navigation.doLogin();

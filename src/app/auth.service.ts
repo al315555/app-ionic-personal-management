@@ -4,6 +4,7 @@ import * as firebase from 'firebase/app';
 import {Observable} from 'rxjs/Observable';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {User} from "firebase";
+import {PurchaseListElement} from "./models/PurchaseListElement";
 
 @Injectable()
 export class AuthService {
@@ -11,7 +12,8 @@ export class AuthService {
     'http://static.wixstatic.com/media/1dd1d6_3f96863fc9384f60944fd5559cab0239.png_srz_300_300_85_22_0.50_1.20_0.00_png_srz';
   user: Observable<firebase.User>;
   userData: User;
-  private errorMessage: string;
+  public errorMessage: string;
+  public listPurchaseData = new Array<PurchaseListElement>();
   public userSpecificData = {
     email: ''
     , photoURL: 'http://static.wixstatic.com/media/1dd1d6_3f96863fc9384f60944fd5559cab0239.png_srz_300_300_85_22_0.50_1.20_0.00_png_srz'
@@ -25,6 +27,7 @@ export class AuthService {
       if (user) {
         this.userData = this._firebaseAuth.auth.currentUser;
         this.loadUserSpecificData();
+        this.loadPurchaseListData();
       }else{
         this.userData = user;
         this.loadUserSpecificData();
@@ -149,8 +152,9 @@ export class AuthService {
       });
   }
 
-  login(email: string, password: string) {
+  login(email: string, password: string){
     console.log('autenticando...')
+    this.errorMessage = 'OK';
     return new Promise((resolve, reject) => {
       this._firebaseAuth
         .auth
@@ -158,6 +162,7 @@ export class AuthService {
         .then(value => {
           // this.loadUserSpecificData();
           // console.log(this.userDetails.displayName + this.isLoggedIn());
+          this.errorMessage = 'OK';
           resolve('');
         })
         .catch(err => {
@@ -165,6 +170,7 @@ export class AuthService {
           reject(err);
         });
     });
+
   }
 
   signup(email: string, password: string) {
@@ -213,6 +219,41 @@ export class AuthService {
           reject(err);
         });
     });
+  }
+
+  public savePurchaseListData(){
+    console.log('Storing purchase list...');
+    const UID = this.userData.uid;
+    firebase.database().ref()
+      .child('PURCHASELIST')
+      .child(UID)
+      .set(this.purchaseListData);
+    this.loadPurchaseListData();
+  }
+
+  public loadPurchaseListData(){
+    console.log('Getting purchase list...');
+    const UID = this.userData.uid;
+    this.listPurchaseData = new Array<PurchaseListElement>();
+    // let result = new Array<PurchaseListElement>();
+    firebase.database().ref()
+      .child('PURCHASELIST')
+      .child(UID).on('value',
+      snapshot => {
+        // result = snapshot.exportVal();
+        snapshot.val().forEach(element => {
+          let purchaseListElement = new PurchaseListElement();
+          purchaseListElement.name = element.name;
+          purchaseListElement.description = element.description;
+          purchaseListElement.dateModification = element.dateModification;
+          this.listPurchaseData.push(purchaseListElement);
+        });
+      }
+    );
+  }
+
+  get purchaseListData(){
+    return this.listPurchaseData;
   }
 
 }
